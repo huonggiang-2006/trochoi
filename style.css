@@ -1,0 +1,362 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9e5d8;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.game {
+    width: min(96vw, 1672px);
+    aspect-ratio: 1672 / 941;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px #9b654555;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* GIAO DIỆN TÚI MÙ */
+
+.home-screen {
+    display: block;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: fill;
+    pointer-events: none;
+}
+
+/* VỊ TRÍ 6 TÚI */
+
+.bag-buttons {
+    position: absolute;
+    inset: 0;
+}
+
+.bag {
+    position: absolute;
+    width: 23.5%;
+    height: 34%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 25%;
+    transition: .2s;
+}
+
+.bag:hover {
+    background: #ffffff22;
+    outline: 3px dashed white;
+    transform: scale(1.035);
+}
+
+.bag:focus-visible {
+    outline: 4px solid #ff5590;
+}
+
+.bag:nth-child(1) {
+    left: 12%;
+    top: 19%;
+}
+
+.bag:nth-child(2) {
+    left: 38.2%;
+    top: 19%;
+}
+
+.bag:nth-child(3) {
+    left: 64.5%;
+    top: 19%;
+}
+
+.bag:nth-child(4) {
+    left: 9.8%;
+    top: 50.5%;
+}
+
+.bag:nth-child(5) {
+    left: 36.2%;
+    top: 50.5%;
+}
+
+.bag:nth-child(6) {
+    left: 62.7%;
+    top: 50.5%;
+}
+
+/* TÚI ĐÃ HOÀN THÀNH */
+
+.bag.completed {
+    display: none;
+}
+
+/* MÀN HÌNH CÂU HỎI */
+
+.question-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+    background:
+        radial-gradient(circle at top, #fff9e9, transparent 60%),
+        linear-gradient(135deg, #ffe3a7, #ffb5c9);
+}
+
+.question-card {
+    width: 90%;
+    max-width: 1050px;
+    max-height: 94%;
+    overflow-y: auto;
+    padding: 3%;
+    border: 5px solid #ffc35b;
+    border-radius: 35px;
+    background: linear-gradient(145deg, #fffdf4, #fff0dc);
+    box-shadow: 0 12px 35px #99501c44;
+    text-align: center;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question-number {
+    padding: 12px 28px;
+    background: #ff6797;
+    color: white;
+    border: 3px solid white;
+    border-radius: 50px;
+    font-size: clamp(14px, 2vw, 25px);
+    font-weight: bold;
+    box-shadow: 0 4px 0 #d83d72;
+}
+
+.question-decoration {
+    font-size: clamp(20px, 3vw, 35px);
+}
+
+#questionText {
+    color: #79341e;
+    font-size: clamp(18px, 2.5vw, 32px);
+    line-height: 1.5;
+    margin: 20px 0 30px;
+}
+
+/* BỐN ĐÁP ÁN */
+
+.answer-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.answer {
+    min-height: 85px;
+    padding: 18px;
+    border: 3px solid #f3b65b;
+    border-radius: 20px;
+    background: #fff9e8;
+    color: #74351f;
+    font-size: clamp(14px, 1.7vw, 21px);
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.answer:hover:not(:disabled) {
+    background: #ffe2a2;
+    transform: translateY(-3px);
+}
+
+.answer.correct {
+    background: #65d889;
+    border-color: #219c4a;
+    color: white;
+}
+
+.answer.wrong {
+    background: #ff6262;
+    border-color: #d52b2b;
+    color: white;
+}
+
+.answer:disabled {
+    cursor: default;
+}
+
+/* THÔNG BÁO ĐÚNG SAI */
+
+.result-message {
+    min-height: 45px;
+    margin-top: 22px;
+    font-size: clamp(16px, 2vw, 23px);
+    font-weight: bold;
+    color: #268d4a;
+}
+
+/* NÚT QUAY LẠI */
+
+.back-button {
+    display: none;
+    margin: 15px auto 0;
+    padding: 15px 45px;
+    border: 4px solid white;
+    border-radius: 50px;
+    background: linear-gradient(#ff83ae, #f3457e);
+    box-shadow: 0 5px 0 #c72d63;
+    color: white;
+    font-size: clamp(16px, 2vw, 23px);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.back-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #c72d63;
+}
+
+/* HOÀN THÀNH */
+
+.finished-message {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    padding: 30px;
+    border: 5px solid #ffb1c8;
+    border-radius: 30px;
+    background: #fff8e9;
+    color: #8a351e;
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 40px #773a2a66;
+}
+
+.finished-message button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 35px;
+    border: 0;
+    border-radius: 30px;
+    background: #ff6196;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .game {
+        width: 100vw;
+    }
+
+    .question-card {
+        width: 96%;
+        padding: 3%;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+
+    .answer-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .answer {
+        min-height: 50px;
+        padding: 10px;
+    }
+
+    #questionText {
+        margin: 10px 0 15px;
+    }
+}
+.bag-buttons {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.bag {
+    pointer-events: auto;
+    z-index: 11;
+    cursor: pointer;
+}
+
+.question-screen {
+    z-index: 20;
+}
+
+.finished-message {
+    max-height: 90%;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.finished-message h2 {
+    color: #e94d83;
+    margin-bottom: 12px;
+}
+
+.thank-you {
+    color: #873b25;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+#congratVideo {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    max-height: 350px;
+    margin: 15px auto;
+    border: 5px solid #ffb1c8;
+    border-radius: 18px;
+    background: #000;
+    object-fit: contain;
+}
+
+#congratVideo {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    max-height: 350px;
+    margin: 15px auto;
+    border: 5px solid #ffb1c8;
+    border-radius: 18px;
+    background: #000;
+    object-fit: contain;
+    pointer-events: none;
+}

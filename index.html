@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bí ẩn bên trong túi mù</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="game">
+
+        <!-- MÀN HÌNH CHỌN 6 TÚI -->
+        <section id="homeScreen" class="screen home-screen">
+
+            <img src="Bí Ẩn Sáu Túi Mù Vàng.png"
+                 class="background"
+                 alt="Giao diện túi mù">
+
+            <div class="bag-buttons">
+                <button class="bag" data-id="0" aria-label="Túi 1"></button>
+                <button class="bag" data-id="1" aria-label="Túi 2"></button>
+                <button class="bag" data-id="2" aria-label="Túi 3"></button>
+                <button class="bag" data-id="3" aria-label="Túi 4"></button>
+                <button class="bag" data-id="4" aria-label="Túi 5"></button>
+                <button class="bag" data-id="5" aria-label="Túi 6"></button>
+            </div>
+
+            <div class="finished-message" id="finishedMessage">
+                🎉 CHÚC MỪNG! BẠN ĐÃ HOÀN THÀNH 6 CÂU HỎI! 🎉
+                <!-- VIDEO CHÚC MỪNG -->
+    
+<!-- VIDEO CHÚC MỪNG TỰ ĐỘNG PHÁT -->
+<video
+    id="congratVideo"
+    autoplay
+    loop
+    playsinline
+    disablepictureinpicture
+    controlslist="nodownload nofullscreen noremoteplayback"
+>
+    <source src="camon.m4v" type="video/mp4">
+</video>
+
+                <button onclick="restartGame()">Chơi lại</button>
+            </div>
+
+        </section>
+
+
+        <!-- MÀN HÌNH CÂU HỎI -->
+        <section id="questionScreen" class="screen question-screen">
+
+            <div class="question-card">
+
+                <div class="question-header">
+                    <div class="question-number" id="questionNumber">
+                        CÂU HỎI SỐ 1
+                    </div>
+                    <div class="question-decoration">🎁 ✨ 🎀</div>
+                </div>
+
+                <h2 id="questionText"></h2>
+
+                <div id="answerList" class="answer-list"></div>
+
+                <div id="resultMessage" class="result-message"></div>
+
+                <button id="backButton" class="back-button">
+                    ⬅ QUAY LẠI
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================== -->
+    <!-- KHU VỰC TỰ THAY ĐỔI 6 CÂU HỎI -->
+    <!-- ================================== -->
+
+    <script type="application/json" id="questionData">
+    [
+        {
+            "question": "CÂU HỎI 1: Điểm khác biệt căn bản nhất về mục tiêu phát triển giữa chủ nghĩa tư bản hiện đại và kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam là gì?",
+            "answers": [
+                "A. Một bên sử dụng thị trường, một bên không sử dụng cơ chế thị trường",
+                "B. Một bên lấy lợi nhuận và tích lũy tư bản làm động lực chủ yếu, bên còn lại gắn tăng trưởng kinh tế với tiến bộ và công bằng xã hội",
+                "C. Một bên có sự quản lý của Nhà nước, bên còn lại hoàn toàn không có sự quản lý của Nhà nước",
+                "D. Một bên tồn tại nhiều thành phần kinh tế, bên còn lại chỉ tồn tại kinh tế nhà nước"
+            ],
+            "correct": 1
+        },
+
+        {
+            "question": "CÂU HỎI 2: Một doanh nghiệp Việt Nam ứng dụng robot, AI và hệ thống quản trị dữ liệu để tăng sản lượng, giảm chi phí và nâng cao chất lượng sản phẩm. Điều này thể hiện rõ nhất sự tiếp thu thành tựu nào của chủ nghĩa tư bản hiện đại?",
+            "answers": [
+                "A. Chỉ tiếp thu kinh nghiệm hội nhập kinh tế quốc tế",
+                "B. Tiếp thu phương thức phân phối thu nhập theo sở hữu tư bản",
+                "C. Tiếp thu thành tựu khoa học - công nghệ, tự động hóa và quản trị sản xuất hiện đại",
+                "D. Tiếp thu cơ chế độc quyền để kiểm soát thị trường"
+            ],
+            "correct": 2
+        },
+
+        {
+            "question": "CÂU HỎI 3: Nhận định nào phản ánh chính xác nhất mối quan hệ giữa cạnh tranh và phân bổ nguồn lực trong kinh tế thị trường?",
+            "answers": [
+                "A. Cạnh tranh luôn bảo đảm nguồn lực được phân bổ hoàn toàn công bằng và tối ưu",
+                "B. Cạnh tranh thúc đẩy doanh nghiệp đổi mới, nâng cao hiệu quả; tuy nhiên, độc quyền và thất bại thị trường có thể làm sai lệch quá trình phân bổ nguồn lực",
+                "C. Cạnh tranh chỉ có tác dụng khi Nhà nước trực tiếp quyết định giá cả tất cả hàng hóa",
+                "D. Cạnh tranh làm cho mọi doanh nghiệp có quy mô và khả năng tiếp cận nguồn lực như nhau"
+            ],
+            "correct": 1
+        },
+
+        {
+            "question": "CÂU HỎI 4: Một quốc gia thu hút được lượng vốn FDI lớn nhưng phần lớn dự án sử dụng công nghệ lạc hậu, gây ô nhiễm và ít liên kết với doanh nghiệp trong nước. Theo nội dung bài học, giải pháp phù hợp nhất là gì?",
+            "answers": [
+                "A. Tiếp tục thu hút FDI bằng mọi giá vì vốn đầu tư càng lớn thì tăng trưởng càng cao",
+                "B. Hạn chế hoàn toàn đầu tư nước ngoài để bảo vệ doanh nghiệp trong nước",
+                "C. Chỉ quan tâm đến số lượng dự án và tổng vốn đăng ký, không cần đánh giá chất lượng đầu tư",
+                "D. Thu hút FDI có chọn lọc, ưu tiên công nghệ tiên tiến, bảo vệ môi trường, chuyển giao công nghệ và tăng liên kết với doanh nghiệp trong nước"
+            ],
+            "correct": 3
+        },
+
+        {
+            "question": "CÂU HỎI 5: Một doanh nghiệp tăng lợi nhuận bằng cách kéo dài thời gian làm việc, cắt giảm chi phí bảo hộ lao động và không bảo đảm đầy đủ chế độ cho nhân viên. Cách đánh giá nào phù hợp nhất với quan điểm phát triển kinh tế thị trường định hướng xã hội chủ nghĩa?",
+            "answers": [
+                "A. Đây là biểu hiện của hiệu quả kinh tế vì doanh nghiệp đã giảm được chi phí sản xuất",
+                "B. Đây là biểu hiện của cạnh tranh bình thường vì doanh nghiệp có quyền tự quyết định mọi điều kiện lao động",
+                "C. Đây là biểu hiện của việc tuyệt đối hóa lợi nhuận, xâm phạm quyền lợi người lao động; cần kiểm soát bằng pháp luật và bảo đảm hài hòa lợi ích",
+                "D. Đây là vấn đề nội bộ của doanh nghiệp nên Nhà nước không cần can thiệp"
+            ],
+            "correct": 2
+        },
+
+        {
+            "question": "CÂU HỎI 6: Điều gì quyết định việc một thành tựu của chủ nghĩa tư bản hiện đại có thể được Việt Nam tiếp thu hay không?",
+            "answers": [
+                "A. Thành tựu đó có được các nước phát triển sử dụng hay không",
+                "B. Thành tựu đó có tạo ra lợi nhuận ngay lập tức hay không",
+                "C. Mức độ phù hợp với điều kiện thực tiễn và mục tiêu phát triển của Việt Nam",
+                "D. Thành tựu đó có được áp dụng rộng rãi trên thế giới hay không"
+            ],
+            "correct": 2
+        }
+    ]
+    </script>
+
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>
